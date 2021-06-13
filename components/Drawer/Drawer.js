@@ -6,9 +6,7 @@ import {
     DrawerItem,
 } from '@react-navigation/drawer';
 import { DrawerActions } from '@react-navigation/native';
-import Registration from '../Registration/Registration';
-import Users from '../Users/Users';
-import Reports from '../Reports/Reports';
+import { firstScreenStack, secondScreenStack, thirdScreenStack } from '../ScreenStack/ScreenStack';
 
 const DrawerContent = createDrawerNavigator();
 
@@ -30,10 +28,13 @@ export default function Drawer() {
             drawerContentOptions={{
                 activeTintColor: '#e91e63',
             }}
+            drawerStyle={{
+                backgroundColor: '#ffe6e6',
+              }}
             drawerContent={props => <CustomDrawerContent {...props} />}>
-            <DrawerContent.Screen name="Registration" component={Registration} />
-            <DrawerContent.Screen name="Users" component={Users} />
-            <DrawerContent.Screen name="Reports" component={Reports} />
+            <DrawerContent.Screen name="Registration" component={firstScreenStack} />
+            <DrawerContent.Screen name="Users" component={secondScreenStack} />
+            <DrawerContent.Screen name="Reports" component={thirdScreenStack} />
         </DrawerContent.Navigator>
     )
 }
