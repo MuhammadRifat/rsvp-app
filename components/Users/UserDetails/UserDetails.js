@@ -7,7 +7,7 @@ export default function UserDetails({route}) {
     const [userData, setUserData] = useState({});
 
     useEffect( () => {
-        fetch('http://localhost:5000/userData', {
+        fetch('https://pacific-hollows-82109.herokuapp.com/userData', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({id: id})
