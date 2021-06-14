@@ -15,7 +15,7 @@ export function firstScreenStack({ navigation }) {
                 name="Registration"
                 component={Registration}
                 options={{
-                    title: 'Registration', //Set Header Title
+                    title: 'Registration', 
                     headerLeft: () => (
                         <TouchableOpacity
                         onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
@@ -30,7 +30,7 @@ export function firstScreenStack({ navigation }) {
                     </TouchableOpacity>
                     ),
                     headerStyle: {
-                        backgroundColor: '#f4511e', //Set Header color
+                        backgroundColor: 'darkred', //Set Header color
                     },
                     headerTintColor: '#fff', //Set Header text color
                     headerTitleStyle: {
@@ -64,7 +64,7 @@ export function secondScreenStack({ navigation }) {
                     </TouchableOpacity>
                     ),
                     headerStyle: {
-                        backgroundColor: '#f4511e', //Set Header color
+                        backgroundColor: 'darkred', //Set Header color
                     },
                     headerTintColor: '#fff', //Set Header text color
                     headerTitleStyle: {
@@ -98,7 +98,7 @@ export function thirdScreenStack({ navigation }) {
                     </TouchableOpacity>
                     ),
                     headerStyle: {
-                        backgroundColor: '#f4511e', //Set Header color
+                        backgroundColor: 'darkred', //Set Header color
                     },
                     headerTintColor: '#fff', //Set Header text color
                     headerTitleStyle: {

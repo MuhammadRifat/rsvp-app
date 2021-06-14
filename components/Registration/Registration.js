@@ -2,7 +2,7 @@ import { DrawerActions } from '@react-navigation/native';
 import React, { useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
-import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 
 export default function Registration({ navigation }) {
@@ -14,6 +14,7 @@ export default function Registration({ navigation }) {
     const [guests, setGuests] = useState('');
     const [address, setAddress] = useState('');
     const [show, setShow] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || dob;
@@ -26,6 +27,7 @@ export default function Registration({ navigation }) {
     }
 
     const handleSubmit = () => {
+        setIsLoading(true);
         if (name && age && dob && profession && locality && guests && address) {
             const newOb = {
                 name: name,
@@ -44,17 +46,23 @@ export default function Registration({ navigation }) {
                 .then(res => res.json())
                 .then(data => {
                     if (data) {
+                        setIsLoading(false);
                         alert("Added successfully");
                     }
                 })
         }
         else {
+            setIsLoading(false);
             alert("Please fill up all boxes");
         }
     }
     return (
-        <ScrollView>
+        <ScrollView style={{ backgroundColor: 'darkred' }}>
             <View style={styles.container}>
+                {
+                    isLoading &&
+                    <ActivityIndicator size="large" color="white" style={{ marginBottom: 5 }} />
+                }
                 <TextInput
                     style={styles.textInput}
                     name="name"
@@ -127,7 +135,8 @@ export default function Registration({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        margin: 20
+        alignItems: 'center',
+        marginTop: 20
     },
     textInput: {
         borderWidth: 1,
@@ -135,7 +144,8 @@ const styles = StyleSheet.create({
         width: 300,
         marginBottom: 10,
         padding: 8,
-        fontSize: 16
+        fontSize: 16,
+        backgroundColor: 'white'
     },
     button: {
         backgroundColor: "darkgreen",
@@ -155,7 +165,8 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderRadius: 5,
         width: 300,
-        marginBottom: 10
+        marginBottom: 10,
+        backgroundColor: 'white'
     },
     picker: {
         borderWidth: 1,

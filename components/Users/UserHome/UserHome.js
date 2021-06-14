@@ -1,30 +1,39 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
-import { StyleSheet, TextInput, Text, View, TouchableOpacity, ScrollView } from 'react-native'
+import { StyleSheet, TextInput, Text, View, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native'
 
 export default function UserHome({ navigation }) {
     const [users, setUsers] = useState([]);
     const [search, setSearch] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
         fetch('https://pacific-hollows-82109.herokuapp.com/users')
             .then(res => res.json())
-            .then(data => setUsers(data))
+            .then(data => {
+                setUsers(data);
+                setIsLoading(false);
+            })
     }, [])
 
     useEffect(() => {
+        setIsLoading(true);
         fetch('https://pacific-hollows-82109.herokuapp.com/searchUser', {
             method: 'POSt',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({search: search})
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ search: search })
         })
             .then(res => res.json())
-            .then(data => setUsers(data))
+            .then(data => {
+                setUsers(data);
+                setIsLoading(false);
+            })
     }, [search])
 
     return (
         <ScrollView style={{ flex: 1 }}>
-            <View style={{ flex:1, alignItems: 'center'}}>
+            <View style={{ flex: 1, alignItems: 'center' }}>
                 <TextInput
                     style={styles.textInput}
                     name="search"
@@ -34,11 +43,15 @@ export default function UserHome({ navigation }) {
                 />
             </View>
             {
+                isLoading &&
+                <ActivityIndicator size="large" color="darkred" style={{ marginBottom: 5 }} />
+            }
+            {
                 users.map(user => {
                     return <TouchableOpacity key={user._id} onPress={() => navigation.navigate('Users', { screen: 'UserDetails', params: { id: user._id }, })}>
                         <View style={styles.userContainer}>
-                            <Text>{user.name}</Text>
-                            <Text>{user.locality}</Text>
+                            <Text style={{ color: 'white', fontWeight: 'bold' }}>{user.name}</Text>
+                            <Text style={{ color: 'white' }}>{user.locality}</Text>
                         </View>
                     </TouchableOpacity>
                 })
@@ -54,6 +67,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         margin: 3,
         padding: 5,
+        backgroundColor: 'darkred',
+        alignItems: 'center',
     },
     textInput: {
         borderWidth: 1,
