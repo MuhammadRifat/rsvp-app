@@ -7,6 +7,7 @@ export default function UserHome({ navigation }) {
     const [search, setSearch] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+    // Load all guests
     useEffect(() => {
         setIsLoading(true);
         fetch('https://pacific-hollows-82109.herokuapp.com/users')
@@ -17,6 +18,7 @@ export default function UserHome({ navigation }) {
             })
     }, [])
 
+    // search guests by name or locality
     useEffect(() => {
         setIsLoading(true);
         fetch('https://pacific-hollows-82109.herokuapp.com/searchUser', {

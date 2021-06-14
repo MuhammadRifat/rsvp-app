@@ -7,6 +7,7 @@ export default function UserDetails({ route }) {
     const [userData, setUserData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
+    // Load unique user data from database by id
     useEffect(() => {
         setIsLoading(true);
         fetch('https://pacific-hollows-82109.herokuapp.com/userData', {

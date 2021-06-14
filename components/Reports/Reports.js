@@ -8,6 +8,7 @@ export default function Reports() {
     const [profession, setProfession] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    // load reports from database
     useEffect(() => {
         setIsLoading(true);
         fetch('https://pacific-hollows-82109.herokuapp.com/reports')
@@ -18,6 +19,7 @@ export default function Reports() {
             });
     }, [])
 
+    // Load locality and profession data with group by.
     useEffect(() => {
         setIsLoading(true);
         fetch('https://pacific-hollows-82109.herokuapp.com/localityAndProfession')

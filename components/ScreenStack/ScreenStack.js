@@ -8,6 +8,7 @@ import { DrawerActions } from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
+// Registration page
 export function firstScreenStack({ navigation }) {
     return (
         <Stack.Navigator initialRouteName="Registration">
@@ -42,6 +43,7 @@ export function firstScreenStack({ navigation }) {
     );
 }
 
+// users page
 export function secondScreenStack({ navigation }) {
     return (
         <Stack.Navigator initialRouteName="Users">
@@ -76,6 +78,7 @@ export function secondScreenStack({ navigation }) {
     );
 }
 
+// Reports page
 export function thirdScreenStack({ navigation }) {
     return (
         <Stack.Navigator initialRouteName="Reports">

@@ -16,16 +16,19 @@ export default function Registration({ navigation }) {
     const [show, setShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
+    // pick date from date picker
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || dob;
         setDob(currentDate);
         setShow(false);
     };
 
+    // manage date picker
     const showDatepicker = () => {
         setShow(true);
     }
 
+    // save date into database
     const handleSubmit = () => {
         setIsLoading(true);
         if (name && age && dob && profession && locality && guests && address) {
@@ -38,6 +41,7 @@ export default function Registration({ navigation }) {
                 guests: guests,
                 address: address
             };
+            
             fetch('https://pacific-hollows-82109.herokuapp.com/addInfo', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
