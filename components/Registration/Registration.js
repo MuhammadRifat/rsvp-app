@@ -36,7 +36,7 @@ export default function Registration({ navigation }) {
                 guests: guests,
                 address: address
             };
-            fetch('http://localhost:5000/addInfo', {
+            fetch('https://pacific-hollows-82109.herokuapp.com/addInfo', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newOb)

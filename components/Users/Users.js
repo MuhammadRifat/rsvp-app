@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import UserHome from './UserHome/UserHome';
+import UserDetails from './UserDetails/UserDetails';
+
+const Stack = createStackNavigator();
 
 export default function Users() {
-    const [users, setUsers] = useState([]);
-
-    useEffect( () => {
-        fetch('http://localhost:5000/users')
-        .then(res => res.json())
-        .then(data => setUsers(data))
-    }, [])
-
     return (
-        <View style={{ flex: 1 }}>
-            <Text>{users.length}</Text>
-            {
-                users.map(user => <Text key={user._id}>{user.name}</Text>)
-            }
-        </View>
+        <Stack.Navigator initialRouteName="UserHome">
+            <Stack.Screen name="UserHome" component={UserHome} options={{ headerShown: false }} />
+            <Stack.Screen name="UserDetails" component={UserDetails} options={{ title: "" }} />
+        </Stack.Navigator>
     )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    
+})
