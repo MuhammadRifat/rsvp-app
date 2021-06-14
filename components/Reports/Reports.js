@@ -8,13 +8,13 @@ export default function Reports() {
     const [profession, setProfession] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/reports')
+        fetch('https://pacific-hollows-82109.herokuapp.com/reports')
             .then(res => res.json())
             .then(data => setTotalByAge(data));
     }, [])
 
     useEffect(() => {
-        fetch('http://localhost:5000/locality')
+        fetch('https://pacific-hollows-82109.herokuapp.com//localityAndProfession')
             .then(res => res.json())
             .then(data => {
                 setLocality(data[0]);
@@ -22,7 +22,6 @@ export default function Reports() {
             });
     }, [])
 
-    console.log(profession);
     return (
         <View style={{ flex: 1, alignItems: 'center' }}>
             <View style={{ flexDirection: "row", padding: 10 }}>
